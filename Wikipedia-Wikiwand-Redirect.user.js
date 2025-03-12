@@ -13,7 +13,7 @@
 (function() {
     let match = location.hostname.match(/^([a-z-]+)\.wikipedia\.org$/);
     if (match) {
-        let lang = match[1]; // Extract language code
+        let lang = match[1];
         let newUrl = location.href.replace(`${lang}.wikipedia.org/wiki`, `www.wikiwand.com/${lang}`);
         location.replace(newUrl);
     }
