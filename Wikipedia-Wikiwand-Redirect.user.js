@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Wikipedia to Wikiwand Redirect
 // @version  1
-// @match        *://en.wikipedia.org/wiki/*
+// @match       *://*.wikipedia.org/wiki/*
 // @homepage     https://github.com/Chillsmeit/Wikipedia-Wikiwand-Redirect
 // @homepageURL  https://github.com/Chillsmeit/Wikipedia-Wikiwand-Redirect
 // @source       github:Chillsmeit/Wikipedia-Wikiwand-Redirect
@@ -11,6 +11,10 @@
 // ==/UserScript==
 
 (function() {
-    let newUrl = location.href.replace("en.wikipedia.org/wiki", "www.wikiwand.com/en");
-    location.replace(newUrl);
+    let match = location.hostname.match(/^([a-z-]+)\.wikipedia\.org$/);
+    if (match) {
+        let lang = match[1]; // Extract language code
+        let newUrl = location.href.replace(`${lang}.wikipedia.org/wiki`, `www.wikiwand.com/${lang}`);
+        location.replace(newUrl);
+    }
 })();
